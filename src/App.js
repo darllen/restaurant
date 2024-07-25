@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cardapio from "./pages/Cardapio";
+import Home from "./pages/Home";
+import Pratos from "./pages/Pratos";
+import Espaco from "./pages/Espaco";
+import Delivery from "./pages/Delivery";
+import Sobre from "./pages/Sobre";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="cardapio" element={<Cardapio />} />
+        <Route path="pratos-da-estacao" element={<Pratos />} />
+        <Route path="nosso-espaco" element={<Espaco />} />
+        <Route path="faq-delivery" element={<Delivery />} />
+        <Route path="sobre-nos" element={<Sobre />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
