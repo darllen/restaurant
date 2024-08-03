@@ -24,10 +24,11 @@ export default function App() {
         <Route path="nosso-espaco" element={<Espaco />} />
         <Route path="faq-delivery" element={<Delivery />} />
         <Route path="sobre-nos" element={<Sobre />} />
-        <Route index path="login" element={<Login />} />
-        <Route index path="cadastro" element={<Cadastro />} />
-        <Route index path="home" element={<Home />} />
-        <Route index path="novo-contato" element={<NovoContato />} />
+        <Route path="login" element={<Login />} />
+        <Route path="cadastro" element={<Cadastro />} />
+        <Route path="home" element={<Home />} />
+        <Route path="novo-contato" element={<NovoContato />} />
+        <Route path="/novo-contato/:id" element={<NovoContato />} />
       </Routes>
     </BrowserRouter>
   );

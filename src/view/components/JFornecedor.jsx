@@ -2,7 +2,7 @@ import React from "react";
 import { CImage } from '@coreui/react';
 
 
-export default function Fornecedor({ foto, nome, registradoDesde, status }) {
+export default function JFornecedor({ foto, nome, registradoDesde, status, onClick }) {
 
     function formatarData(dataParam) {
         if (dataParam === null || dataParam === '' || dataParam === undefined) {
@@ -24,7 +24,7 @@ export default function Fornecedor({ foto, nome, registradoDesde, status }) {
     }
 
     return (
-        <div style={{ borderBottom: '1px solid var(--cui-gray-700)', padding: '0% 4% 2% 3%', display: 'flex', cursor: 'pointer'}}>
+        <div onClick={onClick} style={{ borderBottom: '1px solid var(--cui-gray-700)', padding: '0% 4% 2% 3%', display: 'flex', cursor: 'pointer'}}>
             <div className="cui-alinha" id="fotinha" style={{marginRight: '8%'}}>
                 <CImage align="center" rounded thumbnail src={foto} width={70} height={70} style={{borderRadius: '50%'}}></CImage>
             </div>

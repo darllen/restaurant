@@ -1,35 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
+import { cilArrowLeft } from '@coreui/icons';
+import CIcon from "@coreui/icons-react";
 import background from '../assets/img/background.jpg';
 import logo from '../assets/img/logo.png';
-import { useNavigate } from 'react-router-dom';
-import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
-import axios from 'axios';
+
 
 export default function NovoContato() {
 
     const ENDERECO_API = 'http://localhost:3000/contatos/';
+
     const navigate = useNavigate();
+    const { id } = useParams();
+
     const [getNome, setNome] = useState();
     const [getEmail, setEmail] = useState();
     const [getTelefone, setTelefone] = useState();
     const [getFoto, setFoto] = useState();
+    const [getStatus, setStatus] = useState('New');
+    const [getRegistradoDesde, setRegistradoDesde] = useState(new Date().toISOString().split('T')[0]);
     
+    useEffect(() => {
+        if(id) {
+            findById(id)
+        } 
+    }, [id]); 
 
+    function findById(id) {
+        axios.get(`${ENDERECO_API}${id}`)
+            .then((response) => {
+                const contato = response.data;
+                setNome(contato.nome);
+                setEmail(contato.email);
+                setTelefone(contato.telefone);
+                setFoto(contato.foto);
+                setStatus(contato.status);
+                setRegistradoDesde(contato.registradoDesde);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar contato:', error);
+            });
+    }
+    
     function salvar() {
         let contato = {
             nome: getNome,
             email: getEmail,
             telefone: getTelefone,
             foto: getFoto,
-            status: "New",
-            registradoDesde: new Date().toISOString().split('T')[0]
+            status: getStatus,
+            registradoDesde: getRegistradoDesde
         }
-        axios.post(ENDERECO_API, contato)
+
+        if(id) {
+            axios.put(`${ENDERECO_API}${id}`, contato)
             .then((response) => { 
-                console.log('Cadastrado com sucesso.') 
-                navigate("/home")
+                console.log('Contato atualizado com sucesso.'); 
+                navigate("/home");
             })
-            .catch((error) => { console.log('Erro ao cadastrar.') })
+            .catch((error) => { 
+                console.log('Erro ao atualizar contato.', error); 
+            });
+        } else {
+            axios.post(ENDERECO_API, contato)
+                .then((response) => { 
+                    console.log('Cadastrado com sucesso.') 
+                    navigate("/home")
+                })
+                .catch((error) => { console.log('Erro ao cadastrar.') })
+        }
+
+    }
+
+    function excluir(id) {
+        axios.delete(`${ENDERECO_API}${id}`)
+        .then((response) => { 
+            console.log('Contato deletado com sucesso.'); 
+            navigate("/home");
+        })
+        .catch((error) => { 
+            console.log('Erro ao deletar contato.', error); 
+        });
     }
 
 
@@ -41,7 +94,14 @@ export default function NovoContato() {
                     <div style={{ textTransform: 'uppercase', textAlign: 'center', marginTop: '7%', letterSpacing: 3, fontSize: '1em' }}> comida feita com ingredientes à<br/> base de plantas e muito amor </div>
                 </div>
                 <CForm style={{ backgroundColor: 'var(--cui-gray-100)', width: '25vw', height:'auto', padding: '1.5% 1.5% 3% 1.5%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', letterSpacing: 3, fontSize: '2em', margin: '6%' }}> Novo Contato</div>
+                    { id ?
+                        <div style={{ display: "flex", width: "100%", margin: '8%' }}>
+                            <CIcon icon={cilArrowLeft} onClick={() => navigate('/home')} style={{ width: '40px', cursor:'pointer', marginRight: '20%' }} />
+                            <div style={{ textAlign: 'center', letterSpacing: 3, fontSize: '2em', }}> Novo Contato</div>
+                        </div>
+                        :
+                        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', letterSpacing: 3, fontSize: '2em', margin: '6%' }}> Novo Contato</div>
+                    }
                     <CCol className="cui-column">
                         <CFormLabel className="cui-label" >Nome</CFormLabel>
                         <CFormInput 
@@ -91,9 +151,15 @@ export default function NovoContato() {
                         <CButton onClick={() => salvar()} className="cui-btn" style={{ backgroundColor:'var(--cui-btn-color)' }} variant="outline">
                             Salvar
                         </CButton>
-                        <CButton onClick={() => navigate('/home')} className="cui-btn" style={{ backgroundColor:'var(--cui-border-color-translucent)' }} variant="outline">
-                            Cancelar
-                        </CButton>
+                        { id ? 
+                            <CButton onClick={() => excluir(id)} className="cui-btn" style={{ backgroundColor:'var(--cui-border-color-translucent)' }} variant="outline">
+                                Excluir
+                            </CButton>
+                            :
+                            <CButton onClick={() => navigate('/home')} className="cui-btn" style={{ backgroundColor:'var(--cui-border-color-translucent)' }} variant="outline">
+                                Cancelar
+                            </CButton>
+                        }
                     </CCol>
                 </CForm>
             </div>

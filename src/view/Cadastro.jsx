@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
+import { useNavigate } from 'react-router-dom';
 import background from '../assets/img/background.jpg';
 import logo from '../assets/img/logo.png';
-import { useNavigate } from 'react-router-dom';
-import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
-import axios from 'axios';
 
 export default function Cadastro() {
 

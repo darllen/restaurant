@@ -1,32 +1,34 @@
-import React, { useState, useEffect, useCallback } from "react";
-import background from '../assets/img/background.jpg';
-import logo from '../assets/img/logo.png';
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CImage } from '@coreui/react';
-import axios from 'axios';
-import Fornecedor from './components/Fornecedor';
-import { cilPlus } from '@coreui/icons';
 import CIcon from "@coreui/icons-react";
+import { cilPlus } from '@coreui/icons';
+import background from '../assets/img/background.jpg';
+import logo from '../assets/img/logo.png';
+import JFornecedor from './components/JFornecedor';
 
 export default function Home() {
+
     const ENDERECO_API = 'http://localhost:3000/contatos/';
     const navigate = useNavigate();
     const [getContatos, setContatos] = useState([]);
 
-    const getAllContato = useCallback(() => {
-        axios.get(ENDERECO_API)
-            .then((response) => {
-                setContatos(response.data);
-            })
-            .catch((error) => {
-                console.error('Erro na requisição:', error);
-                navigate("login");
-            });
-    }, [navigate]);
-
     useEffect(() => {
+        const getAllContato = () => {
+            axios.get(ENDERECO_API)
+                .then((response) => {
+                    setContatos(response.data);
+                })
+                .catch((error) => {
+                    console.error('Erro na requisição:', error);
+                    navigate("login");
+                });
+        };
+    
         getAllContato();
-    }, [getAllContato]);
+    }, [navigate]); 
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh', position: 'relative' }}>
@@ -42,12 +44,13 @@ export default function Home() {
                     </div>
                     <div id='listaFornecedores'>
                         { getContatos.slice().reverse().map(contato => (
-                            <Fornecedor
+                            <JFornecedor
                                 key={contato.id}
                                 foto={contato.foto} 
                                 nome={contato.nome} 
                                 registradoDesde={contato.registradoDesde}  
                                 status={contato.status} 
+                                onClick={() => navigate(`/novo-contato/${contato.id}`)}
                             />
                         ))}
                     </div>

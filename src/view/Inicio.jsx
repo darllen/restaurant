@@ -1,10 +1,10 @@
 import React from "react";
-import background from '../assets/img/background.jpg';
-import logo from '../assets/img/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { CImage, CButton } from '@coreui/react';
 import { CIcon } from '@coreui/icons-react';
 import { cibFacebook, cibInstagram, cibTwitter } from '@coreui/icons';
+import background from '../assets/img/background.jpg';
+import logo from '../assets/img/logo.png';
 import JLink from './components/JLink';
 
 

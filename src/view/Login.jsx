@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import background from '../assets/img/background.jpg';
-import logo from '../assets/img/logo.png';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
-import axios from 'axios';
+import background from '../assets/img/background.jpg';
+import logo from '../assets/img/logo.png';
 
 export default function Login() {
 
