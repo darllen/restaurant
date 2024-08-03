@@ -5,12 +5,13 @@
   --cui-btn-font-size: 1rem;
   --cui-btn-font-weight: 500;
   --cui-btn-line-height: 1.5;
-  --cui-btn-color: #000;
+  --cui-black-color: #000;
   --cui-btn-bg: transparent;
   --cui-btn-border-width: 0.5px;
   --cui-btn-border-color: #000;
   --cui-btn-border-radius: 0.25rem;
-  --cui-btn-hover-border-color: #607D48;
+  --cui-btn-color: #98A851;
+  --cui-btn-hover-color: #53582F;
   --cui-btn-hover-background-color: rgba(255, 255, 255, 0.5);
   --cui-btn-box-shadow: none;
   --cui-btn-disabled-opacity: 0.65;
@@ -84,13 +85,13 @@
   --cui-highlight-bg: #fff3cd;
 }
 
-.cui-btn {
+.cui-option {
   padding: var(--cui-btn-padding-y) var(--cui-btn-padding-x);
   font-family: var(--cui-btn-font-family);
   font-size: var(--cui-btn-font-size);
   font-weight: var(--cui-btn-font-weight);
   line-height: var(--cui-btn-line-height);
-  color: var(--cui-btn-color);
+  color: var(--cui-black-color);
   background-color: var(--cui-btn-bg);
   border-width: var(--cui-btn-border-width);
   border-color: var(--cui-btn-border-color);
@@ -104,5 +105,55 @@
   &:disabled {
     opacity: var(--cui-btn-disabled-opacity);
   }
+}
 
+.cui-input {
+  width: 90%; 
+  padding: 12px 15px;
+  border: 2px solid transparent; 
+  border-radius: 5px; 
+  font-size: 0.9em;
+  color: var(--cui-dark); 
+  background-color: var(--cui-white); 
+  transition: border-color 0.3s, box-shadow 0.3s; 
+  letter-spacing: 2px;
+  margin-top: 5px;
+
+  &:focus {
+    outline: none; 
+    border-color: var(--cui-secondary); 
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+
+  &::placeholder {
+    color: var(--cui-gray-300); 
+    font-style: italic; 
+  }
+}
+
+.cui-alinha{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cui-column{
+  margin-top: 5%;
+  width: 90%;
+  justify-content: column;
+}
+
+.cui-btn{
+  width: 60%;
+  margin-top: 3%;
+  padding: 12px 15px;
+  border: 2px solid transparent; 
+  border-radius: 5px; 
+  font-size: 1em;
+  color: var(--cui-white);
+  transition: border-color 0.3s, box-shadow 0.3s; 
+  letter-spacing: 2px;
+  cursor: pointer;
+font-weight: 600;
 }

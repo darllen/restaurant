@@ -8,7 +8,7 @@ export default function JLink({ path, text, style  }) {
             style={{ fontSize: '1.5em', 
                 fontWeight:'600', 
                 textDecoration: 'none', 
-                color: "var(--cui-btn-hover-border-color)",
+                color: "var(--cui-btn-hover-color)",
                 ...style 
             }}>
             {text}
