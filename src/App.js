@@ -1,12 +1,13 @@
 import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Cardapio from "./pages/Cardapio";
-import Home from "./pages/Home";
-import Pratos from "./pages/Pratos";
-import Espaco from "./pages/Espaco";
-import Delivery from "./pages/Delivery";
-import Sobre from "./pages/Sobre";
+import Cardapio from "./view/Cardapio";
+import Home from "./view/Home";
+import Pratos from "./view/Pratos";
+import Espaco from "./view/Espaco";
+import Delivery from "./view/Delivery";
+import Sobre from "./view/Sobre";
+import Login from "./view/Login"
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="nosso-espaco" element={<Espaco />} />
         <Route path="faq-delivery" element={<Delivery />} />
         <Route path="sobre-nos" element={<Sobre />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
