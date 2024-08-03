@@ -1,7 +1,6 @@
 :root {
   --cui-btn-padding-x: 1rem;
   --cui-btn-padding-y: 0.5rem;
-  --cui-btn-font-family: 'Geometric-706-Medium';
   --cui-btn-font-size: 1rem;
   --cui-btn-font-weight: 500;
   --cui-btn-line-height: 1.5;
@@ -87,7 +86,6 @@
 
 .cui-option {
   padding: var(--cui-btn-padding-y) var(--cui-btn-padding-x);
-  font-family: var(--cui-btn-font-family);
   font-size: var(--cui-btn-font-size);
   font-weight: var(--cui-btn-font-weight);
   line-height: var(--cui-btn-line-height);
