@@ -7,17 +7,22 @@ import logo from '../assets/img/logo.png';
 
 export default function Login() {
 
-    const ENDERECO_API = 'http://localhost:3000/usuarios/';
+    const ENDERECO_API = 'http://localhost:3000/usuarios';
     const navigate = useNavigate();
     const [getEmail, setEmail] = useState();
     const [getSenha, setSenha] = useState();
 
     function logar() {
-        axios.get(ENDERECO_API + `?email=${getEmail}&senha=${getSenha}`)
+        axios.get(ENDERECO_API + `?email=${getEmail}&&senha=${getSenha}`)
             .then((response) => {
-                if (response.data.length !== 0) {
-                    console.log('Usuário logado com sucesso!')
-                    navigate("/home")
+                if (response.data.length > 0) {
+                    const usuario = response.data.find(user => user.email === getEmail);
+                    if (usuario && usuario.senha === getSenha) {
+                        console.log('Usuário logado com sucesso!');
+                        navigate("/home");
+                    } else {
+                        console.log('Credenciais inválidas!');
+                    }
                 } else {
                     console.log('Credenciais inválidas!')
                 }
