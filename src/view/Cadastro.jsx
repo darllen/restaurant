@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
 import { useNavigate } from 'react-router-dom';
 import background from '../assets/img/background.jpg';
@@ -22,10 +23,10 @@ export default function Cadastro() {
         }
         axios.post(ENDERECO_API, user)
             .then((response) => { 
-                console.log('Cadastrado com sucesso.') 
+                toast.success('Cadastrado com sucesso.') 
                 navigate("/login")
             })
-            .catch((error) => { console.log('Erro ao cadastrar.') })
+            .catch((error) => { toast.error('Erro ao cadastrar.') })
     }
 
 

@@ -1,6 +1,7 @@
 import './App.css';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import Cardapio from "./view/Cardapio";
 import Inicio from "./view/Inicio";
 import Pratos from "./view/Pratos";
@@ -11,7 +12,7 @@ import Login from "./view/Login"
 import Cadastro from './view/Cadastro';
 import Home from './view/Home';
 import NovoContato from './view/NovoContato';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
@@ -30,6 +31,14 @@ export default function App() {
         <Route path="novo-contato" element={<NovoContato />} />
         <Route path="/novo-contato/:id" element={<NovoContato />} />
       </Routes>
+      <ToastContainer 
+        position="top-left"
+        autoClose={4000} 
+        hideProgressBar={true} 
+        closeOnClick 
+        pauseOnHover
+        theme="light"
+      />
     </BrowserRouter>
   );
 }

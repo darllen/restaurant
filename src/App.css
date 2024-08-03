@@ -153,5 +153,20 @@
   transition: border-color 0.3s, box-shadow 0.3s; 
   letter-spacing: 2px;
   cursor: pointer;
-font-weight: 600;
+  font-weight: 600;
+}
+
+.toastify__toast {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.toastify__toast--success {
+  background-color: #28a745; 
+  color: white; 
+}
+
+.toastify__toast--error {
+  background-color: #dc3545; 
+  color: white;
 }

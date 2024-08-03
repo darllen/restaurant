@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
 import background from '../assets/img/background.jpg';
@@ -18,17 +19,18 @@ export default function Login() {
                 if (response.data.length > 0) {
                     const usuario = response.data.find(user => user.email === getEmail);
                     if (usuario && usuario.senha === getSenha) {
-                        console.log('Usuário logado com sucesso!');
+                        toast.success(`Bem vindo(a), ${usuario.nome}!`)
                         navigate("/home");
                     } else {
-                        console.log('Credenciais inválidas!');
+                        toast.error('Credenciais inválidas!');
                     }
                 } else {
-                    console.log('Credenciais inválidas!')
+                    toast.error('Credenciais inválidas!');
                 }
             })
             .catch((error) => {
                 console.error('Erro na requisição:', error);
+                toast.error('Erro ao fazer a requisição!');
             });
     };
 

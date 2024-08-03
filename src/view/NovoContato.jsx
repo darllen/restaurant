@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CImage, CForm, CFormLabel, CFormInput, CCol, CButton } from '@coreui/react';
 import { cilArrowLeft } from '@coreui/icons';
@@ -57,19 +58,19 @@ export default function NovoContato() {
         if(id) {
             axios.put(`${ENDERECO_API}${id}`, contato)
             .then((response) => { 
-                console.log('Contato atualizado com sucesso.'); 
+                toast.success(`Contato ${getNome} atualizado com sucesso!`); 
                 navigate("/home");
             })
             .catch((error) => { 
-                console.log('Erro ao atualizar contato.', error); 
+                toast.error('Erro ao atualizar contato.', error); 
             });
         } else {
             axios.post(ENDERECO_API, contato)
                 .then((response) => { 
-                    console.log('Cadastrado com sucesso.') 
+                    toast.success(`${getNome} cadastrado com sucesso!`) 
                     navigate("/home")
                 })
-                .catch((error) => { console.log('Erro ao cadastrar.') })
+                .catch((error) => { toast.error('Erro ao cadastrar.') })
         }
 
     }
@@ -77,11 +78,11 @@ export default function NovoContato() {
     function excluir(id) {
         axios.delete(`${ENDERECO_API}${id}`)
         .then((response) => { 
-            console.log('Contato deletado com sucesso.'); 
+            toast.success(`Contato ${getNome} deletado com sucesso.`); 
             navigate("/home");
         })
         .catch((error) => { 
-            console.log('Erro ao deletar contato.', error); 
+            toast.error('Erro ao deletar contato.', error); 
         });
     }
 
