@@ -10,6 +10,8 @@ import Sobre from "./view/Sobre";
 import Login from "./view/Login"
 import Cadastro from './view/Cadastro';
 import Home from './view/Home';
+import NovoContato from './view/NovoContato';
+
 
 
 export default function App() {
@@ -25,6 +27,7 @@ export default function App() {
         <Route index path="login" element={<Login />} />
         <Route index path="cadastro" element={<Cadastro />} />
         <Route index path="home" element={<Home />} />
+        <Route index path="novo-contato" element={<NovoContato />} />
       </Routes>
     </BrowserRouter>
   );
