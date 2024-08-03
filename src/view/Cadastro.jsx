@@ -23,7 +23,7 @@ export default function Cadastro() {
         axios.post(ENDERECO_API, user)
             .then((response) => { 
                 console.log('Cadastrado com sucesso.') 
-                navigate("home")
+                navigate("/login")
             })
             .catch((error) => { console.log('Erro ao cadastrar.') })
     }
